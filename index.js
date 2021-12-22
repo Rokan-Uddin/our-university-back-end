@@ -10,10 +10,16 @@ const app= express()
 app.use(cors())
 app.use(express.json())
 
+const uri = "mongodb+srv://rokanuddin:1LhDb7cM0ctHKF18@cluster0.zf2qb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 async function run() {
     try{
-
+                        // connect database 
+                        await client.connect()
+                        const database = client.db("our-university")
+                        const studentssCollection = database.collection("students")
+                        console.log("connected");
 
     }
     finally{
