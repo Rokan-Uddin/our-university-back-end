@@ -29,6 +29,13 @@ async function run() {
       const students=await cursor.toArray();
       res.json(students)
    })
+    app.get('/students/:id', async(req,res)=>{
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const cursor= studentsCollection.find(query)
+      const studentDetails=await cursor.toArray();
+      res.json(studentDetails)
+   })
 
     app.post('/addstudent',async(req,res)=>{
         const studentInfo =  req.body;
