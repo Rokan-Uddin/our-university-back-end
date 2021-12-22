@@ -24,6 +24,12 @@ async function run() {
     const database = client.db("our-university");
     const studentsCollection = database.collection("students");
 
+    app.get('/students', async(req,res)=>{
+      const cursor= studentsCollection.find({})
+      const students=await cursor.toArray();
+      res.json(students)
+   })
+
     app.post('/addstudent',async(req,res)=>{
         const studentInfo =  req.body;
         const result = await studentsCollection.insertOne(studentInfo);
