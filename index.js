@@ -58,7 +58,7 @@ async function run() {
         const courses = req.body;
         const filter = { _id:ObjectId(req.params.id) };
         const options = { upsert: true };
-        const updateDoc = { $push: courses };
+        const updateDoc = { $addToSet: courses };
         const result = await studentsCollection.updateOne(filter, updateDoc, options);
         res.json(result);
     });
