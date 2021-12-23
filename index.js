@@ -23,6 +23,7 @@ async function run() {
     await client.connect();
     const database = client.db("our-university");
     const studentsCollection = database.collection("students");
+    const courseCollection = database.collection("courses");
 
     app.get('/students', async(req,res)=>{
       const cursor= studentsCollection.find({})
@@ -42,6 +43,16 @@ async function run() {
         const result = await studentsCollection.insertOne(studentInfo);
         res.json(result)
     })
+    app.post('/course',async(req,res)=>{
+        const courseName =  req.body;
+        const result = await courseCollection.insertOne(courseName);
+        res.json(result)
+    })
+    app.get('/course', async(req,res)=>{
+      const cursor= courseCollection.find({})
+      const courses=await cursor.toArray();
+      res.json(courses)
+   })
 
     app.put('/addcourse/:id', async (req, res) => {
         const courses = req.body;
