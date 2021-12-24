@@ -1,6 +1,7 @@
 # Our-University
 
 Heroku link: [Click Here](https://sheltered-crag-88066.herokuapp.com).
+live link: [click Here](https://our-university.netlify.app/).
 
 ## Using our website, you can
 
